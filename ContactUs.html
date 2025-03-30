@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+     <!-- for icons of bootstrapt -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+  </head>
+  <body
+    style="
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    "
+    class="bg-dark text-light"
+  >
+    <!-- ......................................navbar...................................................... -->
+    <nav class="navbar navbar-expand-lg  text-primary navbar-dark bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand text-primary fs-2 fw-bold" href="index.html">      <i class="bi bi-rocket"></i> TechieTrends
+        </a>        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="AboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="ContactUs.html">Contact Us</a>
+            </li>
+           
+            
+          </ul>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              More            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Blog</a></li>
+              <li><a class="dropdown-item" href="#"> Portfolio</a></li>
+              <li><a class="dropdown-item" href="#">Services</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+   <!-- Bootstrap alert -->
+   <div id="alertonsbmit" class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+    <strong><i class="bi bi-info-circle"></i></strong> Form Submitted Successfully..
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+
+    <!-- .....................................form.......................................................................... -->
+    <!-- validate form -->
+  <form onsubmit="return SubmitForm()" class="my-5 container text-light">
+    
+  <h1 class="text-center"> Contact Us <i class="bi bi-envelope"></i></h1>
+    <!-- name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        style="border: 3px solid #0d6efd"
+        class="form-control bg-dark text-light"
+        placeholder="name"
+        id="name"
+      />
+      <p id="ErrorName" style="display: none; color: red">Enter your name</p>
+    </div>
+    <!-- email -->
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control bg-dark text-light"
+        placeholder="email"
+        id="exampleInputEmail1"
+        style="border: 3px solid #0d6efd"
+        aria-describedby="emailHelp"
+      />
+      <p id="ErrorEmail" style="display: none; color: red">Enter your email</p>
+    </div>
+
+    <!-- subject -->
+    <div class="mb-3">
+      <label for="subject" class="form-label">Subject</label>
+      <input
+        type="text"
+        class="form-control bg-dark text-light"
+        placeholder="subject"
+        id="subject"
+        style="border: 3px solid #0d6efd
+"
+      />
+      <p id="ErrorSubject" style="display: none; color: red">Enter your subject</p>
+    </div>
+    <!-- Message -->
+    <div class="">
+      <label for="Message" class="form-label">Message</label>
+      <textarea
+        class="form-control bg-dark mb-2 text-light"
+        placeholder="Leave a comment here"
+        id="floatingTextarea"
+        style="border: 3px solid #0d6efd
+"
+      ></textarea>
+      <p id="ErrorMessage" style="display: none; color: red">Enter some Message</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+ 
+  </form>
+
+  <!-- JavaScript for form validation -->
+  <script>
+    function SubmitForm() {
+      // manipulation of input
+      let nameInput = document.getElementById("name").value;
+      let emailInput = document.getElementById("exampleInputEmail1").value;
+      let subject = document.getElementById("subject").value;
+      let Message = document.getElementById("floatingTextarea").value;
+
+      // manipulation of error
+      let nameError = document.getElementById("ErrorName");
+      let ErrorEmail = document.getElementById("ErrorEmail");
+      let ErrorSubject = document.getElementById("ErrorSubject");
+      let ErrorMessage = document.getElementById("ErrorMessage");
+
+      // validity of name
+      nameError.style.display = "none";
+      ErrorEmail.style.display = "none";
+      ErrorSubject.style.display = "none";
+      ErrorMessage.style.display = "none";
+
+      let isValid = true;
+
+      if (nameInput === "") {
+        nameError.style.display = "block";
+        isValid = false;
+      }
+
+      // validity of email
+      let emailPatternregex =
+        /^[a-zA-Z0-9]+([._%+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+
+      if (emailInput === "") {
+        ErrorEmail.style.display = "block";
+        isValid = false;
+      } else if (!emailPatternregex.test(emailInput)) {
+        ErrorEmail.innerText = "Enter a valid email";
+        ErrorEmail.style.display = "block";
+        isValid = false;
+      }
+
+      // validity of subject
+      if (subject === "") {
+        ErrorSubject.style.display = "block";
+        isValid = false;
+      }
+
+      // validity of message
+      if (Message === "") {
+        ErrorMessage.style.display = "block";
+        isValid = false;
+      }
+
+      // Show alert if everything is valid
+      if (isValid === true) {
+        console.log('Form is valid');
+        let alertonsbmit = document.getElementById('alertonsbmit');
+        alertonsbmit.classList.remove('d-none');  // Remove the d-none class
+        alertonsbmit.style.display = 'block';     // Set the display property to block
+        isValid= false;
+      }
+
+      return isValid;
+    }
+  </script>
+
+    <!--.......................................................... map............................................................................ -->
+    <iframe
+      class="container d-flex mb-5"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.797833069671!2d67.0423730751537!3d24.938956142112545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f3daae54d55%3A0x5dae2a3a4b71f12a!2sAptech%20Learning%20North%20Nazimabad%20II%20Center!5e0!3m2!1sen!2s!4v1742672482509!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      width="600"
+      height="450"
+      frameborder="0"
+      style="border: 0; border-radius: 10px"
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+
+
+
+    <!--.......................................... footer.................................................................... -->
+     <!-- Footer Section -->
+<footer class="bg-secondary text-light pt-4 pb-2"style="background-color: #8B3DFF;">
+  <div class="container">
+    <div class="row">
+      <!-- Column 1: About Us -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>About TechieTrends</h5>
+        <p>TechieTrends is a leading tech blog that provides the latest news, insights, and reviews on technology, gadgets, and trends.</p>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled ">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="AboutUs.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="ContactUs.html" class="text-light text-decoration-none">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Social Media Links -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Follow Us</h5>
+        <ul class="list-unstyled d-flex">
+          <li><a href="https://facebook.com" target="_blank" class="text-white me-3">    <i class="bi bi-facebook"></i> <!-- Facebook Icon -->
+          </a></li>
+          <li><a href="https://twitter.com" target="_blank" class="text-white me-3">     <i class='bi bi-twitter' ></i>
+          </a></li>
+          <li><a href="https://linkedin.com" target="_blank" class="text-white me-3"><i class="bi bi-linkedin"></i></a></li>
+          <li><a href="https://instagram.com" target="_blank" class="text-white me-3"><i class="bi bi-instagram"></i></a></li>
+        </ul>
+      </div>
+
+
+ 
+      <i class='fab text-light fa-facebook' style='font-size:24px'></i>
+      
+
+    <!-- Footer Bottom -->
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <p>&copy; 2025 TechieTrends. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- bootstrapt link for js -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
